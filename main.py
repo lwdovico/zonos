@@ -17,7 +17,7 @@ if __name__ == "__main__":
     parser.add_argument("--input-text", type=str)
     parser.add_argument("--speaker", type=str, default="assets/exampleaudio.mp3")
     parser.add_argument("--language", type=str, default="en-us")
-    parser.add_argument("--output-path", type=str, default="output.mp3")
+    parser.add_argument("--output-path", type=str, default="/app/outputs/output.mp3")
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
