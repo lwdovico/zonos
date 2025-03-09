@@ -8,7 +8,8 @@ This repository provides a basic setup for using [Zonos](https://github.com/Zyph
 - **Flexible input options**: Accepts both text files and direct input strings.
 - **Audio normalization**: Automatically normalizes the generated audio for better sound quality.
 - **Output formats**: Supports generating audio in MP3 format.
-
+- **Gradio Interface**: Inference can be run both via .py or via the gradio interface (reccomended).
+  
 ## Requirements
 
 - Docker
@@ -21,20 +22,30 @@ This repository provides a basic setup for using [Zonos](https://github.com/Zyph
    git clone https://github.com/lwdovico/zonos
    cd zonos
    ```
-2. Build the container:
+2. Then you can build and launch the gradio interface (reccomended):
+   ```bash
+   docker compose up
+   ```
+3. Open the Gradio UI at: http://localhost:7861/
+
+NB: The docker exposes the port 7861, if you need to change it please be sure to update it also in the gradio_main.py
+
+### Optional: Build manually
+
+You don't need to do it if you want to use the Gradio WebUI only
+
+1. Build the container:
 ```bash
    docker build -t zonos .
    ```
 Optionally add your assets to the path before building the docker so to have them mounted
 
-3. Run and attach to it:
+2. Run and attach to it:
 ```bash
    docker run -it --gpus=all --net=host -v /path/to/zonos_outputs:/app/outputs -t zonos
 ```
 
-## Usage
-
-### Running the Inference
+#### Running manually the Inference
 
 To generate audio from text, run the following script:
 
@@ -50,7 +61,9 @@ python main.py --input-text /path/to/text.txt
 
 This will process the text and output a single audio file.
 
-### Customizing the Setup
+#### Customizing the Setup
+
+NB: It doesn't allow for all the customizations available in the Gradio WebUI
 
 You can customize the behavior of the script by adding the following command-line arguments:
 
@@ -66,5 +79,5 @@ Example usage:
 python main.py --input-text "Hello world!" --speaker "another_speaker.mp3" --language "fr-fr" --output-path "french_output.mp3" --seed 1234
 ```
 
-### Acknowledgements
+## Acknowledgements
 Special thanks to the Zonos developers for creating this text-to-speech model.

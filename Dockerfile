@@ -10,3 +10,5 @@ RUN git clone https://github.com/Zyphra/Zonos.git .
 RUN uv pip install --system -e . && uv pip install --system -e .[compile]
 
 COPY . ./
+
+EXPOSE 7861
