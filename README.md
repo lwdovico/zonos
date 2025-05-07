@@ -30,6 +30,23 @@ This repository provides a basic setup for using [Zonos](https://github.com/Zyph
 
 NB: The docker exposes the port 7861, if you need to change it please be sure to update it also in the gradio_main.py
 
+## WARNING
+
+The network_mode: "host" configuration in docker-compose.yml works as expected on Linux systems but not on Windows. If you're running this Docker container on a Windows host, you should replace:
+
+```bash
+network_mode: "host"
+```
+
+with:
+
+```bash
+ports:
+  - "7861:7861"
+```
+
+This will expose the Gradio app on port 7861 of your host machine, allowing you to access it via http://localhost:7861.
+
 ### Optional: Build manually
 
 You don't need to do it if you want to use the Gradio WebUI only
